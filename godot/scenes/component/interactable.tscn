@@ -3,4 +3,5 @@
 [ext_resource type="Script" uid="uid://b4l47ojnq1lq7" path="res://scenes/component/interactable.gd" id="1_dvxn5"]
 
 [node name="Interactable" type="Area2D"]
+collision_layer = 2
 script = ExtResource("1_dvxn5")

@@ -1,6 +1,7 @@
-[gd_scene load_steps=29 format=3 uid="uid://p3j4ym5blysp"]
+[gd_scene load_steps=31 format=3 uid="uid://p3j4ym5blysp"]
 
 [ext_resource type="Texture2D" uid="uid://bk4rh3t6a77jk" path="res://scenes/game_objects/basic_customer/customer_idle_walk.png" id="1_ss4lh"]
+[ext_resource type="Script" uid="uid://ckcporpslivaw" path="res://scenes/game_objects/basic_customer/basic_customer.gd" id="1_uq4sn"]
 [ext_resource type="PackedScene" uid="uid://dc3kgp8jm8aek" path="res://scenes/component/interactable.tscn" id="2_hc6w8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hc6w8"]
@@ -197,7 +198,11 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_ss4lh"]
 radius = 7.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_hc6w8"]
+radius = 26.0
+
 [node name="BasicCustomer" type="CharacterBody2D"]
+script = ExtResource("1_uq4sn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -15)
@@ -210,3 +215,8 @@ position = Vector2(0, -9)
 shape = SubResource("CircleShape2D_ss4lh")
 
 [node name="Interactable" parent="." instance=ExtResource("2_hc6w8")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+position = Vector2(0, -9)
+shape = SubResource("CircleShape2D_hc6w8")
+debug_color = Color(0.776471, 0.8, 0.329412, 0.196078)

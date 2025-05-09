@@ -1,3 +1,4 @@
 extends Node
 
-signal example_signal_emiited
+signal interactor_area_entered
+signal interactor_area_exited
