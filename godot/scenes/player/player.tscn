@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://8dom6sfuhkm2"]
+
+[ext_resource type="Texture2D" uid="uid://cqlsna11nscxq" path="res://sprites/random_dude_01.png" id="1_8afob"]
+[ext_resource type="Script" uid="uid://dso2pv4q0qrwd" path="res://scenes/player/player.gd" id="1_dovo2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8afob"]
+radius = 8.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_dovo2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -15)
+texture = ExtResource("1_8afob")
+hframes = 24
+frame = 21
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_8afob")

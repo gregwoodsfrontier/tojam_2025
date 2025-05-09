@@ -4,12 +4,8 @@ extends Node2D
 @onready var pause_overlay = %PauseOverlay
 
 func _ready() -> void:
-	fade_overlay.visible = true
+	_template_ready()
 	
-	if SaveGame.has_save():
-		SaveGame.load_game(get_tree())
-	
-	pause_overlay.game_exited.connect(_save_game)
 
 func _input(event) -> void:
 	if event.is_action_pressed("pause") and not pause_overlay.visible:
@@ -20,3 +16,12 @@ func _input(event) -> void:
 		
 func _save_game() -> void:
 	SaveGame.save_game(get_tree())
+
+func _template_ready():
+	fade_overlay.visible = true
+	
+	if SaveGame.has_save():
+		SaveGame.load_game(get_tree())
+	
+	pause_overlay.game_exited.connect(_save_game)
+	
