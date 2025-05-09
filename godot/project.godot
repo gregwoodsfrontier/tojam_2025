@@ -10,9 +10,11 @@ config_version=5
 
 [application]
 
-config/name="MyGame"
-run/main_scene="res://scenes/boot/godot/godot_bootsplash_scene.tscn"
+config/name="TOJAM_2025"
+config/version="0"
+run/main_scene="uid://cik30de5gaaah"
 config/features=PackedStringArray("4.4")
+boot_splash/bg_color=Color(0.337255, 0.329412, 0.431373, 1)
 config/icon="res://icon.svg"
 
 [autoload]
@@ -21,12 +23,13 @@ UserSettings="*res://settings/user_settings.gd"
 
 [display]
 
-window/size/viewport_width=576
-window/size/viewport_height=324
-window/size/window_width_override=1920
+window/size/viewport_width=640
+window/size/viewport_height=360
+window/size/window_width_override=1280
 window/size/window_height_override=1080
-window/stretch/mode="canvas_items"
+window/stretch/mode="viewport"
 window/stretch/aspect="keep_height"
+window/vsync/vsync_mode=0
 
 [gui]
 
@@ -93,4 +96,5 @@ locale/translations=PackedStringArray("res://i18n/translation.de.translation", "
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 environment/defaults/default_clear_color=Color(0.211765, 0.239216, 0.321569, 1)
