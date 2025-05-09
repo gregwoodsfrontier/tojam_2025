@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Request" load_steps=2 format=3 uid="uid://cgrnp44gbtsu0"]
+
+[ext_resource type="Script" uid="uid://0xh26e184ny0" path="res://resources/request.gd" id="1_ujtir"]
+
+[resource]
+script = ExtResource("1_ujtir")
+customer = "Jane"
+food = "Donut"
+wait_time = 30.0
+tip_value = 3
+status = 0

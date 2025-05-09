@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://cik30de5gaaah"]
+[gd_scene load_steps=13 format=4 uid="uid://cik30de5gaaah"]
 
 [ext_resource type="Script" uid="uid://ovjegpk30m4h" path="res://scenes/ingame_scene.gd" id="1_objyc"]
 [ext_resource type="PackedScene" uid="uid://bkk87o2ooo6at" path="res://ui/overlays/fade_overlay.tscn" id="1_y6ebv"]
@@ -1141,6 +1141,14 @@ terrain_set_0/terrain_0/name = "green"
 terrain_set_0/terrain_0/color = Color(0.501961, 0.913725, 0.25098, 1)
 sources/0 = SubResource("TileSetAtlasSource_gadrd")
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5jhce"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vus8m"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_5jhce"]
+normal = Vector2(0, 1)
+
 [node name="IngameScene" type="Node2D"]
 script = ExtResource("1_objyc")
 
@@ -1168,3 +1176,20 @@ position = Vector2(320, 180)
 
 [node name="BasicCustomer" parent="." instance=ExtResource("7_5jhce")]
 position = Vector2(219, 145)
+
+[node name="WallX0" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+physics_material_override = SubResource("PhysicsMaterial_5jhce")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallX0"]
+shape = SubResource("WorldBoundaryShape2D_vus8m")
+
+[node name="WallY0" type="StaticBody2D" parent="."]
+position = Vector2(0, -10)
+collision_layer = 4
+collision_mask = 0
+physics_material_override = SubResource("PhysicsMaterial_5jhce")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallY0"]
+shape = SubResource("WorldBoundaryShape2D_5jhce")

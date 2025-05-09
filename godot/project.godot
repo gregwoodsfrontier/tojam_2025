@@ -97,7 +97,9 @@ locale/translations=PackedStringArray("res://i18n/translation.de.translation", "
 
 [layer_names]
 
+2d_physics/layer_1="Interactor"
 2d_physics/layer_2="Interactable"
+2d_physics/layer_3="Wall"
 
 [rendering]
 
