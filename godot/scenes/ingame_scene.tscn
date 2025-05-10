@@ -1,10 +1,11 @@
-[gd_scene load_steps=19 format=4 uid="uid://cik30de5gaaah"]
+[gd_scene load_steps=22 format=4 uid="uid://cik30de5gaaah"]
 
 [ext_resource type="Script" uid="uid://ovjegpk30m4h" path="res://scenes/ingame_scene.gd" id="1_objyc"]
 [ext_resource type="PackedScene" uid="uid://bkk87o2ooo6at" path="res://ui/overlays/fade_overlay.tscn" id="1_y6ebv"]
 [ext_resource type="PackedScene" uid="uid://wqiordn5m7yr" path="res://scenes/manager/request_manager.tscn" id="2_etwux"]
 [ext_resource type="PackedScene" uid="uid://cr648jsx044r0" path="res://scenes/manager/food_tray_manager.tscn" id="2_iid22"]
 [ext_resource type="PackedScene" uid="uid://jyv4g54adkmo" path="res://ui/overlays/pause_overlay.tscn" id="3_8o178"]
+[ext_resource type="PackedScene" uid="uid://d37k45fnlj32v" path="res://scenes/manager/customer_manager.tscn" id="3_th7mp"]
 [ext_resource type="PackedScene" uid="uid://8dom6sfuhkm2" path="res://scenes/player/player.tscn" id="4_7v5ay"]
 [ext_resource type="TileSet" uid="uid://c2tt3jboebe00" path="res://resources/tilesets/wall_borders.tres" id="4_iid22"]
 [ext_resource type="TileSet" uid="uid://bkyvkts0c86hb" path="res://resources/tilesets/wall_paper.tres" id="5_2vs8u"]
@@ -15,6 +16,7 @@
 [ext_resource type="Resource" uid="uid://dcgql1kjiabdl" path="res://resources/burger.tres" id="8_1sh3m"]
 [ext_resource type="TileSet" uid="uid://ddf7fnfmplo3x" path="res://resources/tilesets/kitchen_stuff.tres" id="8_pxehq"]
 [ext_resource type="PackedScene" uid="uid://cts1stxqf1j6t" path="res://scenes/game_objects/kitchen/kitchen.tscn" id="8_vus8m"]
+[ext_resource type="PackedScene" uid="uid://b0emk12qhmylg" path="res://scenes/game_objects/chair/chair.tscn" id="16_4d8mm"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5jhce"]
 
@@ -24,10 +26,18 @@ normal = Vector2(1, 0)
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_5jhce"]
 normal = Vector2(0, 1)
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_th7mp"]
+vertices = PackedVector2Array(97.0469, 293.922, 69.0313, 10, 86.3594, 10, 92.3594, 51.0313, 579.922, 160.367, 592.023, 290.078, 406.977, 167.328, 381.906, 50.0234)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 0, 6), PackedInt32Array(6, 0, 3, 7)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(58, 0, 88, 304, 603, 300, 589, 150, 415, 157, 390, 40, 101, 41, 95, 0)])
+
 [node name="IngameScene" type="Node2D"]
 script = ExtResource("1_objyc")
 
 [node name="FoodTrayManager" parent="." instance=ExtResource("2_iid22")]
+
+[node name="CustomerManager" parent="." node_paths=PackedStringArray("spawn_point_group") instance=ExtResource("3_th7mp")]
+spawn_point_group = [NodePath("../SpawnMarkerA"), NodePath("../SpawnMarkerB")]
 
 [node name="RequestManager" parent="." instance=ExtResource("2_etwux")]
 
@@ -53,6 +63,95 @@ tile_set = ExtResource("7_pxehq")
 tile_map_data = PackedByteArray("AAAMAAMAAAAGAA8AAAAMAAQAAAAGABAAAAAMAAUAAAAGABEAAAANAAMAAAAHAA8AAAANAAQAAAAHABAAAAANAAUAAAAHABEAAAAOAAMAAAAIAA8AAAAOAAQAAAAIABAAAAAOAAUAAAAIABEAAAAUAAMAAAAGAA8AAAAUAAQAAAAGABAAAAAUAAUAAAAGABEAAAAVAAMAAAAHAA8AAAAVAAQAAAAHABAAAAAVAAUAAAAHABEAAAAWAAMAAAAIAA8AAAAWAAQAAAAIABAAAAAWAAUAAAAIABEAAAAgAA4AAAAGAA8AAAAgAA8AAAAGABAAAAAgABAAAAAGABEAAAAhAA4AAAAHAA8AAAAhAA8AAAAHABAAAAAhABAAAAAHABEAAAAiAA4AAAAIAA8AAAAiAA8AAAAIABAAAAAiABAAAAAIABEAAAAYAA4AAAAGAA8AAAAYAA8AAAAGABAAAAAYABAAAAAGABEAAAAZAA4AAAAHAA8AAAAZAA8AAAAHABAAAAAZABAAAAAHABEAAAAaAA4AAAAIAA8AAAAaAA8AAAAIABAAAAAaABAAAAAIABEAAAARAA4AAAAGAA8AAAARAA8AAAAGABAAAAARABAAAAAGABEAAAASAA4AAAAHAA8AAAASAA8AAAAHABAAAAASABAAAAAHABEAAAATAA4AAAAIAA8AAAATAA8AAAAIABAAAAATABAAAAAIABEAAAAIAA4AAAAGAA8AAAAIAA8AAAAGABAAAAAIABAAAAAGABEAAAAJAA4AAAAHAA8AAAAJAA8AAAAHABAAAAAJABAAAAAHABEAAAAKAA4AAAAIAA8AAAAKAA8AAAAIABAAAAAKABAAAAAIABEAAAA=")
 tile_set = ExtResource("8_pxehq")
 
+[node name="ChairGroup" type="Node2D" parent="."]
+
+[node name="Chair" parent="ChairGroup" instance=ExtResource("16_4d8mm")]
+position = Vector2(191, 60)
+
+[node name="Chair2" parent="ChairGroup" instance=ExtResource("16_4d8mm")]
+position = Vector2(191, 79)
+
+[node name="Chair3" parent="ChairGroup" instance=ExtResource("16_4d8mm")]
+position = Vector2(242, 60)
+
+[node name="Chair4" parent="ChairGroup" instance=ExtResource("16_4d8mm")]
+position = Vector2(242, 79)
+
+[node name="ChairGroup6" type="Node2D" parent="."]
+position = Vector2(319, 177)
+
+[node name="Chair" parent="ChairGroup6" instance=ExtResource("16_4d8mm")]
+position = Vector2(191, 60)
+
+[node name="Chair2" parent="ChairGroup6" instance=ExtResource("16_4d8mm")]
+position = Vector2(191, 79)
+
+[node name="Chair3" parent="ChairGroup6" instance=ExtResource("16_4d8mm")]
+position = Vector2(242, 60)
+
+[node name="Chair4" parent="ChairGroup6" instance=ExtResource("16_4d8mm")]
+position = Vector2(242, 79)
+
+[node name="ChairGroup5" type="Node2D" parent="."]
+position = Vector2(191, 176)
+
+[node name="Chair" parent="ChairGroup5" instance=ExtResource("16_4d8mm")]
+position = Vector2(191, 60)
+
+[node name="Chair2" parent="ChairGroup5" instance=ExtResource("16_4d8mm")]
+position = Vector2(191, 79)
+
+[node name="Chair3" parent="ChairGroup5" instance=ExtResource("16_4d8mm")]
+position = Vector2(242, 60)
+
+[node name="Chair4" parent="ChairGroup5" instance=ExtResource("16_4d8mm")]
+position = Vector2(242, 79)
+
+[node name="ChairGroup4" type="Node2D" parent="."]
+position = Vector2(-65, 177)
+
+[node name="Chair" parent="ChairGroup4" instance=ExtResource("16_4d8mm")]
+position = Vector2(191, 60)
+
+[node name="Chair2" parent="ChairGroup4" instance=ExtResource("16_4d8mm")]
+position = Vector2(191, 79)
+
+[node name="Chair3" parent="ChairGroup4" instance=ExtResource("16_4d8mm")]
+position = Vector2(242, 60)
+
+[node name="Chair4" parent="ChairGroup4" instance=ExtResource("16_4d8mm")]
+position = Vector2(242, 79)
+
+[node name="ChairGroup3" type="Node2D" parent="."]
+position = Vector2(79, 176)
+
+[node name="Chair" parent="ChairGroup3" instance=ExtResource("16_4d8mm")]
+position = Vector2(191, 60)
+
+[node name="Chair2" parent="ChairGroup3" instance=ExtResource("16_4d8mm")]
+position = Vector2(191, 79)
+
+[node name="Chair3" parent="ChairGroup3" instance=ExtResource("16_4d8mm")]
+position = Vector2(242, 60)
+
+[node name="Chair4" parent="ChairGroup3" instance=ExtResource("16_4d8mm")]
+position = Vector2(242, 79)
+
+[node name="ChairGroup2" type="Node2D" parent="."]
+position = Vector2(127, 1)
+
+[node name="Chair" parent="ChairGroup2" instance=ExtResource("16_4d8mm")]
+position = Vector2(191, 60)
+
+[node name="Chair2" parent="ChairGroup2" instance=ExtResource("16_4d8mm")]
+position = Vector2(191, 79)
+
+[node name="Chair3" parent="ChairGroup2" instance=ExtResource("16_4d8mm")]
+position = Vector2(242, 60)
+
+[node name="Chair4" parent="ChairGroup2" instance=ExtResource("16_4d8mm")]
+position = Vector2(242, 79)
+
 [node name="UI" type="CanvasLayer" parent="."]
 visible = false
 
@@ -66,14 +165,17 @@ process_mode = 2
 visible = false
 
 [node name="Player" parent="." instance=ExtResource("4_7v5ay")]
+y_sort_enabled = true
 position = Vector2(310, 180)
 
 [node name="GameCamera" parent="." instance=ExtResource("6_gadrd")]
 position = Vector2(320, 180)
 
-[node name="BasicCustomer" parent="." instance=ExtResource("7_5jhce")]
-position = Vector2(219, 145)
+[node name="BasicCustomer" parent="." node_paths=PackedStringArray("nav_target") instance=ExtResource("7_5jhce")]
+y_sort_enabled = true
+position = Vector2(93, 141)
 request_info = ExtResource("8_1sh3m")
+nav_target = NodePath("../ChairGroup4/Chair")
 
 [node name="WallX0" type="StaticBody2D" parent="."]
 collision_layer = 4
@@ -94,3 +196,12 @@ shape = SubResource("WorldBoundaryShape2D_5jhce")
 
 [node name="Kitchen" parent="." instance=ExtResource("8_vus8m")]
 position = Vector2(464, 16)
+
+[node name="SpawnMarkerA" type="Marker2D" parent="."]
+position = Vector2(69, 10)
+
+[node name="SpawnMarkerB" type="Marker2D" parent="."]
+position = Vector2(94, 10)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_th7mp")

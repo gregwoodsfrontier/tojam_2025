@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://d37k45fnlj32v"]
+
+[ext_resource type="Script" uid="uid://bmeb1pwslnipa" path="res://scenes/manager/customer_manager.gd" id="1_241pv"]
+[ext_resource type="PackedScene" uid="uid://p3j4ym5blysp" path="res://scenes/game_objects/basic_customer/basic_customer.tscn" id="2_lx0n7"]
+
+[node name="CustomerManager" type="Node"]
+script = ExtResource("1_241pv")
+customer_scene = ExtResource("2_lx0n7")
+
+[node name="SpawnTimer" type="Timer" parent="."]

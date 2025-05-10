@@ -6,7 +6,6 @@ const ACCELERATION_SMOOTHING = 25.0
 func _process(delta: float) -> void:
 	var direction = get_movement_vec().normalized()
 	var target_velocity =  direction * MAX_SPEED
-	
 	velocity = velocity.lerp(target_velocity, 1 - exp(- delta * ACCELERATION_SMOOTHING))
 	move_and_slide()
 
