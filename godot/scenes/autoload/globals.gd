@@ -1,0 +1,16 @@
+extends Node
+
+var id = 0
+
+enum FOOD_TYPE {
+	BURGER, GYUDON, SALAD
+}
+
+enum REQUEST_STAT {
+	QUEUE,
+	PROCESSING,
+	COMPLETE
+}
+
+func increment_id():
+	id += 1

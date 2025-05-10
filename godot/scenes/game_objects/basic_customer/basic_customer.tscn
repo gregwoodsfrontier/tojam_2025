@@ -220,3 +220,11 @@ shape = SubResource("CircleShape2D_ss4lh")
 position = Vector2(0, -9)
 shape = SubResource("CircleShape2D_hc6w8")
 debug_color = Color(0.776471, 0.8, 0.329412, 0.196078)
+
+[node name="ThinkingTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="WaitingTimer" type="Timer" parent="."]
+wait_time = 30.0
+one_shot = true
