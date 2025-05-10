@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var request_info: Request
 @onready var thinking_timer: Timer = $ThinkingTimer
 @onready var waiting_timer: Timer = $WaitingTimer
+@onready var leave_timer: Timer = $LeaveTimer
 
 var id = 0
 var food_wanted = Globals.FOOD_TYPE.GYUDON
@@ -22,6 +23,8 @@ func _ready():
 	id = Globals.id
 	Globals.increment_id()
 	thinking_timer.timeout.connect(_on_thinking_timer_timeout)
+	waiting_timer.timeout.connect(_on_waiting_timer_timeout)
+	leave_timer.timeout.connect(_on_leave_timer_timeout)
 	# just an example below.
 	interactable.interact = Callable(self, "_on_interact")
 	interactable.action_name = dialog[tracker]
@@ -32,3 +35,11 @@ func _on_interact():
 
 func _on_thinking_timer_timeout():
 	GameEvents.emit_ready_to_order(id)
+	waiting_timer.start()
+
+func _on_waiting_timer_timeout():
+	# get angry
+	leave_timer.start()
+
+func _on_leave_timer_timeout():
+	queue_free()

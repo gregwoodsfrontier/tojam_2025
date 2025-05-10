@@ -3,9 +3,6 @@ extends CharacterBody2D
 const MAX_SPEED := 125.0
 const ACCELERATION_SMOOTHING = 25.0
 
-func _ready() -> void:
-	pass
-
 func _process(delta: float) -> void:
 	var direction = get_movement_vec().normalized()
 	var target_velocity =  direction * MAX_SPEED

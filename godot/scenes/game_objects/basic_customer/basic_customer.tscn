@@ -201,7 +201,9 @@ radius = 7.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_hc6w8"]
 radius = 26.0
 
-[node name="BasicCustomer" type="CharacterBody2D"]
+[node name="BasicCustomer" type="CharacterBody2D" groups=["customers"]]
+collision_layer = 0
+collision_mask = 12
 script = ExtResource("1_uq4sn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -223,8 +225,9 @@ debug_color = Color(0.776471, 0.8, 0.329412, 0.196078)
 
 [node name="ThinkingTimer" type="Timer" parent="."]
 one_shot = true
-autostart = true
 
 [node name="WaitingTimer" type="Timer" parent="."]
-wait_time = 30.0
+wait_time = 10.0
 one_shot = true
+
+[node name="LeaveTimer" type="Timer" parent="."]
