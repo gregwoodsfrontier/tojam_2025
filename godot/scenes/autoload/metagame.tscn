@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://4m4iksfqtlpc"]
+
+[ext_resource type="Script" uid="uid://bmcn401ur45t" path="res://scenes/autoload/metagame.gd" id="1_4ums2"]
+
+[node name="Metagame" type="Node"]
+script = ExtResource("1_4ums2")
