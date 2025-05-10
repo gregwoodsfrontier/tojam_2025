@@ -32,7 +32,6 @@ func _process(delata:float):
 		if interact_label == null:
 			return
 		else:
-			print(active_areas[0].action_name)
 			interact_label.text = active_areas[0].action_name
 			interact_label.global_position = (owner as Node2D).global_position
 			interact_label.global_position.y -= 36
