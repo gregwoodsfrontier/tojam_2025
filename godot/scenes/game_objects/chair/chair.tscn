@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0emk12qhmylg"]
+
+[ext_resource type="TileSet" uid="uid://ddf7fnfmplo3x" path="res://resources/tilesets/kitchen_stuff.tres" id="1_c82ty"]
+
+[node name="Chair" type="TileMapLayer"]
+tile_map_data = PackedByteArray(0, 0, 0, 0, 255, 255, 0, 0, 7, 0, 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 14, 0, 0, 0)
+tile_set = ExtResource("1_c82ty")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(6, 0)
