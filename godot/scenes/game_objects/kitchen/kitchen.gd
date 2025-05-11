@@ -11,7 +11,6 @@ func _ready():
 func _on_interact():
 	print("collected meal from kitchen")
 	GameEvents.emit_kitchen_interacted()
-	print(ready_meals)
 
 func _on_request_complete(finished_request):
 	ready_meals.push_back(finished_request)

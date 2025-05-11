@@ -85,4 +85,5 @@ func _on_waiting_timer_timeout():
 	leave_timer.start()
 
 func _on_leave_timer_timeout():
-	queue_free()
+	print("customer %d is going to leave", % id)
+	#queue_free()
