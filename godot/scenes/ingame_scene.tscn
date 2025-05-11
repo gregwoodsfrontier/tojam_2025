@@ -176,10 +176,11 @@ position = Vector2(310, 180)
 [node name="GameCamera" parent="." instance=ExtResource("6_gadrd")]
 position = Vector2(320, 180)
 
-[node name="BasicCustomer" parent="." instance=ExtResource("7_5jhce")]
+[node name="BasicCustomer" parent="." node_paths=PackedStringArray("exit_target") instance=ExtResource("7_5jhce")]
 y_sort_enabled = true
 position = Vector2(169, 109)
 request_info = ExtResource("8_1sh3m")
+exit_target = NodePath("../SpawnMarkerA")
 
 [node name="WallX0" type="StaticBody2D" parent="."]
 collision_layer = 4
@@ -208,8 +209,8 @@ polygon = PackedVector2Array(48, 0, 48, 320, 624, 320, 624, 143, 477, 124, 478, 
 [node name="Kitchen" parent="." instance=ExtResource("8_vus8m")]
 position = Vector2(464, 16)
 
-[node name="SpawnMarkerA" type="Marker2D" parent="."]
+[node name="SpawnMarkerA" type="Marker2D" parent="." groups=["exit"]]
 position = Vector2(69, 10)
 
-[node name="SpawnMarkerB" type="Marker2D" parent="."]
+[node name="SpawnMarkerB" type="Marker2D" parent="." groups=["exit"]]
 position = Vector2(94, 10)

@@ -61,9 +61,8 @@ func _on_process_timer_timeout():
 
 func _on_kitchen_interacted():
 	if ready_meals.size() <= 0:
+		print("No meals ready for pickup.")
 		return
 	var ready_request = ready_meals.pop_front()
 	var ready_food = ready_request["food"]
 	food_tray_manager.get_food(ready_food)
-	print(food_tray_manager.player_held_food)
-	# send the data to the food tray manager
