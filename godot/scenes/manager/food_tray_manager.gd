@@ -2,16 +2,17 @@ extends Node
 class_name FoodTrayManager
 
 var player_held_food : Array[Globals.FOOD_TYPE]= []
-const TRAY_LIMIT = 2
+const TRAY_LIMIT = 1
 
 func _ready():
 	GameEvents.meal_served.connect(_on_meal_served)
 
 func get_food(_food: Globals.FOOD_TYPE):
-	if player_held_food.size() >= TRAY_LIMIT:
+	if player_held_food.size() > TRAY_LIMIT:
 		printerr("Cannot hold any more food la!")
 		return
 	player_held_food.push_back(_food)
+	GameEvents.emit_food_collected(_food)
 
 func serve_food(_food: Globals.FOOD_TYPE):
 	var index = player_held_food.find(_food)

@@ -9,6 +9,14 @@ signal meal_served
 signal tray_checked
 signal tip_given
 signal customer_leaving
+signal food_collected_by_tray
+signal tray_item_released
+
+func emit_tray_item_released():
+	tray_item_released.emit()
+
+func emit_food_collected(_foodId: Globals.FOOD_TYPE):
+	food_collected_by_tray.emit(_foodId)
 
 func emit_customer_leaving(id: int):
 	customer_leaving.emit(id)

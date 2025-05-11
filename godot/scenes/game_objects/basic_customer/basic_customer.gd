@@ -17,7 +17,7 @@ var chair_target: Node2D
 #var exit_target: Node2D
 
 var id = 0
-var food_wanted = Globals.FOOD_TYPE.CAKE
+var food_wanted = Globals.FOOD_TYPE.PASTA
 var wait_time = 20.0
 var tip = 2
 
@@ -79,6 +79,7 @@ func _get_nav_direction() -> Vector2:
 func _on_interact():
 	for_fun()
 	GameEvents.emit_meal_served(id, food_wanted)
+	GameEvents.emit_tray_item_released()
 
 func _on_thinking_timer_timeout():
 	GameEvents.emit_ready_to_order(id, food_wanted, tip)

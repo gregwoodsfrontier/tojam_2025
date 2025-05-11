@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://8dom6sfuhkm2"]
+[gd_scene load_steps=7 format=3 uid="uid://8dom6sfuhkm2"]
 
 [ext_resource type="Texture2D" uid="uid://cqlsna11nscxq" path="res://sprites/random_dude_01.png" id="1_8afob"]
 [ext_resource type="Script" uid="uid://dso2pv4q0qrwd" path="res://scenes/player/player.gd" id="1_dovo2"]
 [ext_resource type="PackedScene" uid="uid://d31i2jouq1tvb" path="res://scenes/component/interactor_comp.tscn" id="3_gmlin"]
+[ext_resource type="PackedScene" uid="uid://d10axlpwc01i0" path="res://scenes/component/indicator_comp.tscn" id="4_lvxji"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8afob"]
 radius = 8.0
@@ -41,3 +42,6 @@ interact_label = NodePath("../Label")
 position = Vector2(0, -8)
 shape = SubResource("CircleShape2D_gmlin")
 debug_color = Color(0.776471, 0.8, 0.329412, 0.196078)
+
+[node name="IndicatorComp" parent="." instance=ExtResource("4_lvxji")]
+position = Vector2(-23, -10)

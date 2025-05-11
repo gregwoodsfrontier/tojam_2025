@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@onready var indicator_comp: Sprite2D = $IndicatorComp
+
 const MAX_SPEED := 125.0
 const ACCELERATION_SMOOTHING = 25.0
 
