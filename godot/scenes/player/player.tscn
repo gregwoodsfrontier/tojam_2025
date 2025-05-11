@@ -11,7 +11,7 @@ radius = 8.0
 radius = 26.0
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
-collision_layer = 0
+collision_layer = 16
 collision_mask = 12
 script = ExtResource("1_dovo2")
 
@@ -27,6 +27,7 @@ shape = SubResource("CircleShape2D_8afob")
 
 [node name="Label" type="Label" parent="."]
 visible = false
+z_index = 1000
 offset_left = -21.0
 offset_top = -45.0
 offset_right = 23.0

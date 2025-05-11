@@ -27,9 +27,9 @@ normal = Vector2(1, 0)
 normal = Vector2(0, 1)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_th7mp"]
-vertices = PackedVector2Array(97.0469, 293.922, 69.0313, 10, 86.3594, 10, 92.3594, 51.0313, 579.922, 160.367, 592.023, 290.078, 406.977, 167.328, 381.906, 50.0234)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 0, 6), PackedInt32Array(6, 0, 3, 7)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(58, 0, 88, 304, 603, 300, 589, 150, 415, 157, 390, 40, 101, 41, 95, 0)])
+vertices = PackedVector2Array(97.0469, 293.922, 69.0313, 10, 86.3594, 10, 92.3594, 51.0313, 381.906, 50.0234, 406.688, 165.977, 592.906, 290.07, 592.07, 190.758)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(0, 3, 4, 5), PackedInt32Array(6, 0, 5, 7)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(58, 0, 62, 303, 603, 300, 602, 182, 415, 157, 390, 40, 101, 41, 95, 0)])
 
 [node name="IngameScene" type="Node2D"]
 script = ExtResource("1_objyc")
@@ -39,7 +39,8 @@ script = ExtResource("1_objyc")
 [node name="CustomerManager" parent="." node_paths=PackedStringArray("spawn_point_group") instance=ExtResource("3_th7mp")]
 spawn_point_group = [NodePath("../SpawnMarkerA"), NodePath("../SpawnMarkerB")]
 
-[node name="RequestManager" parent="." instance=ExtResource("2_etwux")]
+[node name="RequestManager" parent="." node_paths=PackedStringArray("food_tray_manager") instance=ExtResource("2_etwux")]
+food_tray_manager = NodePath("../FoodTrayManager")
 
 [node name="RoomLayout" type="Node2D" parent="."]
 
@@ -171,11 +172,10 @@ position = Vector2(310, 180)
 [node name="GameCamera" parent="." instance=ExtResource("6_gadrd")]
 position = Vector2(320, 180)
 
-[node name="BasicCustomer" parent="." node_paths=PackedStringArray("nav_target") instance=ExtResource("7_5jhce")]
+[node name="BasicCustomer" parent="." instance=ExtResource("7_5jhce")]
 y_sort_enabled = true
-position = Vector2(93, 141)
+position = Vector2(169, 109)
 request_info = ExtResource("8_1sh3m")
-nav_target = NodePath("../ChairGroup4/Chair")
 
 [node name="WallX0" type="StaticBody2D" parent="."]
 collision_layer = 4
@@ -193,6 +193,13 @@ physics_material_override = SubResource("PhysicsMaterial_5jhce")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WallY0"]
 shape = SubResource("WorldBoundaryShape2D_5jhce")
+
+[node name="WallCollision" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WallCollision"]
+polygon = PackedVector2Array(48, 0, 48, 320, 624, 320, 624, 143, 477, 124, 478, 43, 387, 47, 387, 0, 659, -1, 656, 368, 0, 367, 0, 0)
 
 [node name="Kitchen" parent="." instance=ExtResource("8_vus8m")]
 position = Vector2(464, 16)

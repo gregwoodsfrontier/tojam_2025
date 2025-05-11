@@ -736,7 +736,6 @@ texture = ExtResource("1_5d823")
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_igy6t"]
 resource_name = "chair"
 scenes/1/scene = ExtResource("2_8p5lg")
-scenes/1/display_placeholder = ExtResource("2_8p5lg")
 
 [resource]
 physics_layer_0/collision_layer = 8

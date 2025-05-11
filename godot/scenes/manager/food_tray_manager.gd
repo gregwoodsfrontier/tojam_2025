@@ -1,4 +1,5 @@
 extends Node
+class_name FoodTrayManager
 
 var player_held_food : Array[Globals.FOOD_TYPE]= []
 const TRAY_LIMIT = 2

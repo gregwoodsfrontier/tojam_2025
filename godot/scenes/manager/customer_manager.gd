@@ -13,9 +13,14 @@ func spawn_customer(px: float, py: float):
 	if customer_scene == null:
 		return
 	var customer_instance = customer_scene.instantiate() as Node2D
-	add_child(customer_instance)
 	customer_instance.global_position.x = px
 	customer_instance.global_position.y = py
+	##var rand_chair = chair_groups.pick_random()
+	var rand_chair = chair_groups[20]
+	print(rand_chair)
+	customer_instance.set_chair_target(rand_chair)
+	customer_instance.set_exit_target(spawn_point_group.pick_random())
+	add_child(customer_instance)
 
 func _on_spawn_timer_timeout():
 	if spawn_point_group.size() == 0:

@@ -7,10 +7,13 @@ extends CharacterBody2D
 @onready var leave_timer: Timer = $LeaveTimer
 
 @export var request_info: Request
-@export var nav_target: Node2D
 
 const MAX_SPEED := 125.0
 const ACCELERATION_SMOOTHING = 25.0
+
+var nav_target: Node2D
+var chair_target: Node2D
+var exit_target: Node2D
 
 var id = 0
 var food_wanted = Globals.FOOD_TYPE.GYUDON
@@ -31,18 +34,34 @@ func _ready():
 	thinking_timer.timeout.connect(_on_thinking_timer_timeout)
 	waiting_timer.timeout.connect(_on_waiting_timer_timeout)
 	leave_timer.timeout.connect(_on_leave_timer_timeout)
-	# just an example below.
+	if chair_target != null:
+		nav_target = chair_target
+	# just an example below.\
+	#print(chair_target)
 	interactable.interact = Callable(self, "_on_interact")
 	interactable.action_name = dialog[tracker]
 
 func _physics_process(delta: float) -> void:
 	var direction = _get_nav_direction()
-	#if navigation_agent_2d.is_navigation_finished():
-		#direction = Vector2.ZERO
+	if navigation_agent_2d.is_navigation_finished():
+		direction = Vector2.ZERO
+	
 	var target_velocity =  direction * MAX_SPEED
 	velocity = velocity.lerp(target_velocity, 1 - exp(- delta * ACCELERATION_SMOOTHING))
 	
 	move_and_slide()
+
+func set_chair_target(_chair: Node2D):
+	chair_target = _chair
+	
+func get_chair_target() -> Node2D:
+	return chair_target
+
+func set_exit_target(_exit: Node2D):
+	exit_target = _exit
+	
+func get_exit_target() -> Node2D:
+	return exit_target
 
 func _get_nav_direction() -> Vector2:
 	var direction := Vector2.ZERO
@@ -58,7 +77,7 @@ func _on_interact():
 	interactable.action_name = dialog[tracker]
 
 func _on_thinking_timer_timeout():
-	GameEvents.emit_ready_to_order(id)
+	GameEvents.emit_ready_to_order(id, food_wanted, tip)
 	waiting_timer.start()
 
 func _on_waiting_timer_timeout():
