@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckruul4m3k021"]
+
+[ext_resource type="Texture2D" uid="uid://cskpcghhd70p" path="res://sprites/goat_on_pole.png" id="1_jgy13"]
+
+[node name="GoatOnPole" type="Sprite2D"]
+texture = ExtResource("1_jgy13")
