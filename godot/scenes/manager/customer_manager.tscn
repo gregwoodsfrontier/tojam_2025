@@ -8,4 +8,4 @@ script = ExtResource("1_241pv")
 customer_scene = ExtResource("2_lx0n7")
 
 [node name="SpawnTimer" type="Timer" parent="."]
-one_shot = true
+autostart = true

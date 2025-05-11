@@ -46,8 +46,6 @@ func _on_process_timer_timeout():
 	if processing_req.size() <= 0:
 		return
 	processing_req[0]["status"] = Globals.REQUEST_STAT.SERVE_READY
-	print("request pool")
-	print(request_pool)
 	# this code will send events to kitchen.
 	#GameEvents.emit_request_complete(finished_request)
 	if ready_meals.size() >= READY_MEAL_SIZE_lIMIT:

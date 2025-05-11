@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://cik30de5gaaah"]
+[gd_scene load_steps=21 format=4 uid="uid://cik30de5gaaah"]
 
 [ext_resource type="Script" uid="uid://ovjegpk30m4h" path="res://scenes/ingame_scene.gd" id="1_objyc"]
 [ext_resource type="PackedScene" uid="uid://bkk87o2ooo6at" path="res://ui/overlays/fade_overlay.tscn" id="1_y6ebv"]
@@ -11,12 +11,12 @@
 [ext_resource type="TileSet" uid="uid://bkyvkts0c86hb" path="res://resources/tilesets/wall_paper.tres" id="5_2vs8u"]
 [ext_resource type="PackedScene" uid="uid://3rmlncmjf2x4" path="res://scenes/game_camera/game_camera.tscn" id="6_gadrd"]
 [ext_resource type="TileSet" uid="uid://8ad0vbvugkp0" path="res://resources/tilesets/baseboard.tres" id="6_ilpo5"]
-[ext_resource type="PackedScene" uid="uid://p3j4ym5blysp" path="res://scenes/game_objects/basic_customer/basic_customer.tscn" id="7_5jhce"]
+[ext_resource type="PackedScene" uid="uid://cpqnbg4dnct5f" path="res://scenes/ui/scoreUI/tip_manager.tscn" id="6_o7ls4"]
 [ext_resource type="TileSet" uid="uid://dsotl375wlt2h" path="res://resources/tilesets/floor.tres" id="7_pxehq"]
-[ext_resource type="Resource" uid="uid://dcgql1kjiabdl" path="res://resources/burger.tres" id="8_1sh3m"]
 [ext_resource type="TileSet" uid="uid://ddf7fnfmplo3x" path="res://resources/tilesets/kitchen_stuff.tres" id="8_pxehq"]
 [ext_resource type="PackedScene" uid="uid://cts1stxqf1j6t" path="res://scenes/game_objects/kitchen/kitchen.tscn" id="8_vus8m"]
 [ext_resource type="PackedScene" uid="uid://b0emk12qhmylg" path="res://scenes/game_objects/chair/chair.tscn" id="16_4d8mm"]
+[ext_resource type="PackedScene" uid="uid://ctlpihforjxxn" path="res://scenes/ui/scoreUI/tip_UI.tscn" id="18_q7kwb"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_th7mp"]
 vertices = PackedVector2Array(601.922, 301.031, 66.0312, 302.961, 177, 275, 271, 275, 127, 275, 601.07, 185.797, 561, 275, 561, 214, 406.312, 181.797, 511, 214, 127, 214, 66.9609, 10.2109, 95, 59.0703, 191, 58.4297, 191, 99, 177, 214, 241, 58.1016, 319, 57.6016, 319, 99, 241, 99, 511, 275, 433, 275, 433, 214, 383, 214, 369, 99, 369, 57.2734, 402.32, 57.0625, 95, 10.7891, 271, 214, 383, 275, 321, 214, 321, 275)
@@ -25,16 +25,30 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(57, 0, 56, 313, 612, 31
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5jhce"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vus8m"]
-normal = Vector2(1, 0)
-
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_5jhce"]
 normal = Vector2(0, 1)
 
 [node name="IngameScene" type="Node2D"]
 script = ExtResource("1_objyc")
 
+[node name="UI" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="FadeOverlay" parent="UI" instance=ExtResource("1_y6ebv")]
+unique_name_in_owner = true
+visible = false
+
+[node name="PauseOverlay" parent="UI" instance=ExtResource("3_8o178")]
+unique_name_in_owner = true
+process_mode = 2
+visible = false
+
+[node name="TipUI" parent="." node_paths=PackedStringArray("tip_manager") instance=ExtResource("18_q7kwb")]
+tip_manager = NodePath("../TipManager")
+
 [node name="FoodTrayManager" parent="." instance=ExtResource("2_iid22")]
+
+[node name="TipManager" parent="." instance=ExtResource("6_o7ls4")]
 
 [node name="CustomerManager" parent="." node_paths=PackedStringArray("spawn_point_group") instance=ExtResource("3_th7mp")]
 spawn_point_group = [NodePath("../SpawnMarkerA"), NodePath("../SpawnMarkerB")]
@@ -47,7 +61,12 @@ navigation_polygon = SubResource("NavigationPolygon_th7mp")
 
 [node name="Objects" type="TileMapLayer" parent="NavigationRegion2D"]
 z_index = 10
-tile_map_data = PackedByteArray("AAAMAAMAAAAGAA8AAAAMAAQAAAAGABAAAAAMAAUAAAAGABEAAAANAAMAAAAHAA8AAAANAAQAAAAHABAAAAANAAUAAAAHABEAAAAOAAMAAAAIAA8AAAAOAAQAAAAIABAAAAAOAAUAAAAIABEAAAAUAAMAAAAGAA8AAAAUAAQAAAAGABAAAAAUAAUAAAAGABEAAAAVAAMAAAAHAA8AAAAVAAQAAAAHABAAAAAVAAUAAAAHABEAAAAWAAMAAAAIAA8AAAAWAAQAAAAIABAAAAAWAAUAAAAIABEAAAAgAA4AAAAGAA8AAAAgAA8AAAAGABAAAAAgABAAAAAGABEAAAAhAA4AAAAHAA8AAAAhAA8AAAAHABAAAAAhABAAAAAHABEAAAAiAA4AAAAIAA8AAAAiAA8AAAAIABAAAAAiABAAAAAIABEAAAAYAA4AAAAGAA8AAAAYAA8AAAAGABAAAAAYABAAAAAGABEAAAAZAA4AAAAHAA8AAAAZAA8AAAAHABAAAAAZABAAAAAHABEAAAAaAA4AAAAIAA8AAAAaAA8AAAAIABAAAAAaABAAAAAIABEAAAARAA4AAAAGAA8AAAARAA8AAAAGABAAAAARABAAAAAGABEAAAASAA4AAAAHAA8AAAASAA8AAAAHABAAAAASABAAAAAHABEAAAATAA4AAAAIAA8AAAATAA8AAAAIABAAAAATABAAAAAIABEAAAAIAA4AAAAGAA8AAAAIAA8AAAAGABAAAAAIABAAAAAGABEAAAAJAA4AAAAHAA8AAAAJAA8AAAAHABAAAAAJABAAAAAHABEAAAAKAA4AAAAIAA8AAAAKAA8AAAAIABAAAAAKABAAAAAIABEAAAA=")
+tile_map_data = PackedByteArray("AAAMAAMAAAAGAA8AAAAMAAQAAAAGABAAAAAMAAUAAAAGABEAAAANAAMAAAAHAA8AAAANAAQAAAAHABAAAAANAAUAAAAHABEAAAAOAAMAAAAIAA8AAAAOAAQAAAAIABAAAAAOAAUAAAAIABEAAAAUAAMAAAAGAA8AAAAUAAQAAAAGABAAAAAUAAUAAAAGABEAAAAVAAMAAAAHAA8AAAAVAAQAAAAHABAAAAAVAAUAAAAHABEAAAAWAAMAAAAIAA8AAAAWAAQAAAAIABAAAAAWAAUAAAAIABEAAAAgAA4AAAAGAA8AAAAgAA8AAAAGABAAAAAgABAAAAAGABEAAAAhAA4AAAAHAA8AAAAhAA8AAAAHABAAAAAhABAAAAAHABEAAAAiAA4AAAAIAA8AAAAiAA8AAAAIABAAAAAiABAAAAAIABEAAAAYAA4AAAAGAA8AAAAYAA8AAAAGABAAAAAYABAAAAAGABEAAAAZAA4AAAAHAA8AAAAZAA8AAAAHABAAAAAZABAAAAAHABEAAAAaAA4AAAAIAA8AAAAaAA8AAAAIABAAAAAaABAAAAAIABEAAAARAA4AAAAGAA8AAAARAA8AAAAGABAAAAARABAAAAAGABEAAAASAA4AAAAHAA8AAAASAA8AAAAHABAAAAASABAAAAAHABEAAAATAA4AAAAIAA8AAAATAA8AAAAIABAAAAATABAAAAAIABEAAAAIAA4AAAAGAA8AAAAIAA8AAAAGABAAAAAIABAAAAAGABEAAAAJAA4AAAAHAA8AAAAJAA8AAAAHABAAAAAJABAAAAAHABEAAAAKAA4AAAAIAA8AAAAKAA8AAAAIABAAAAAKABAAAAAIABEAAAAcAAkAAAAMABUAAAAdAAkAAAANABUAAAAeAAkAAAANABUAAAAfAAkAAAAOABUAAAAhAAkAAAAMABUAAAAiAAkAAAANABUAAAAjAAkAAAANABUAAAAkAAkAAAANABUAAAAlAAkAAAANABUAAAAmAAkAAAAOABUAAAA=")
+tile_set = ExtResource("8_pxehq")
+
+[node name="Food" type="TileMapLayer" parent="NavigationRegion2D"]
+z_index = 11
+tile_map_data = PackedByteArray("AAAcAAkAAAABABcAAAAdAAkAAAAOAC8AAAAeAAkAAAACACgAAAA=")
 tile_set = ExtResource("8_pxehq")
 
 [node name="RoomLayout" type="Node2D" parent="."]
@@ -157,38 +176,12 @@ position = Vector2(242, 60)
 [node name="Chair4" parent="ChairGroup2" instance=ExtResource("16_4d8mm")]
 position = Vector2(242, 79)
 
-[node name="UI" type="CanvasLayer" parent="."]
-visible = false
-
-[node name="FadeOverlay" parent="UI" instance=ExtResource("1_y6ebv")]
-unique_name_in_owner = true
-visible = false
-
-[node name="PauseOverlay" parent="UI" instance=ExtResource("3_8o178")]
-unique_name_in_owner = true
-process_mode = 2
-visible = false
-
 [node name="Player" parent="." instance=ExtResource("4_7v5ay")]
 y_sort_enabled = true
 position = Vector2(310, 180)
 
 [node name="GameCamera" parent="." instance=ExtResource("6_gadrd")]
 position = Vector2(320, 180)
-
-[node name="BasicCustomer" parent="." node_paths=PackedStringArray("exit_target") instance=ExtResource("7_5jhce")]
-y_sort_enabled = true
-position = Vector2(169, 109)
-request_info = ExtResource("8_1sh3m")
-exit_target = NodePath("../SpawnMarkerA")
-
-[node name="WallX0" type="StaticBody2D" parent="."]
-collision_layer = 4
-collision_mask = 0
-physics_material_override = SubResource("PhysicsMaterial_5jhce")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WallX0"]
-shape = SubResource("WorldBoundaryShape2D_vus8m")
 
 [node name="WallY0" type="StaticBody2D" parent="."]
 position = Vector2(0, -10)

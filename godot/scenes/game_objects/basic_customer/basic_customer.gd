@@ -17,11 +17,9 @@ var chair_target: Node2D
 #var exit_target: Node2D
 
 var id = 0
-var food_wanted = Globals.FOOD_TYPE.GYUDON
-var wait_time = 25.0
-var tip = 3
-
-var request_gen = { }
+var food_wanted = Globals.FOOD_TYPE.CAKE
+var wait_time = 20.0
+var tip = 2
 
 var dialog = [
 	"Take my order!",
@@ -30,25 +28,14 @@ var dialog = [
 var tracker = 0
 
 func _ready():
-	id = Globals.id
-	Globals.increment_id()
-	
 	GameEvents.tray_checked.connect(_on_tray_checked)
 	thinking_timer.timeout.connect(_on_thinking_timer_timeout)
 	waiting_timer.timeout.connect(_on_waiting_timer_timeout)
 	leave_timer.timeout.connect(_on_leave_timer_timeout)
 	if chair_target != null:
 		nav_target = chair_target
-	# just an example below.\
-	#print(chair_target)
 	interactable.interact = Callable(self, "_on_interact")
 	interactable.action_name = dialog[tracker]
-	if Globals.debug:
-		chair_target = get_tree().get_first_node_in_group("chair")
-		nav_target = chair_target
-
-#func _process(delta: float) -> void:
-	
 
 func _physics_process(delta: float) -> void:
 	var direction = _get_nav_direction()
@@ -59,7 +46,14 @@ func _physics_process(delta: float) -> void:
 	velocity = velocity.lerp(target_velocity, 1 - exp(- delta * ACCELERATION_SMOOTHING))
 	if navigation_agent_2d.is_navigation_finished() && !leave_timer.is_stopped():
 		leave_timer.stop()
+		queue_free()
 	move_and_slide()
+
+func set_food_wanted(_food: Globals.FOOD_TYPE):
+	food_wanted = _food
+
+func set_tip(_value: int):
+	tip = _value
 
 func set_chair_target(_chair: Node2D):
 	chair_target = _chair
@@ -84,29 +78,33 @@ func _get_nav_direction() -> Vector2:
 
 func _on_interact():
 	for_fun()
-	GameEvents.emit_meal_served(food_wanted)
+	GameEvents.emit_meal_served(id, food_wanted)
 
 func _on_thinking_timer_timeout():
 	GameEvents.emit_ready_to_order(id, food_wanted, tip)
 	waiting_timer.start()
 
 func _on_waiting_timer_timeout():
-	# get angry
+	modulate = Color(1,0,0,0.5)
 	nav_target = exit_target
 	leave_timer.start()
+	GameEvents.emit_customer_leaving(id)
 
 func _on_leave_timer_timeout():
 	print("customer %d is going to leave" % id)
 	queue_free()
 
-func _on_tray_checked(result: bool):
+func _on_tray_checked(_id: int, result: bool):
+	if id != _id:
+		return
 	if result == true:
-		print(" happy ")
-		#GameEvents.emit_tip_given(tip)
+		print("customer %d happy" % id)
+		GameEvents.emit_tip_given(tip)
 	else:
 		modulate = Color(1,0,0,0.5)
 	waiting_timer.stop()
 	leave_timer.start()
+	GameEvents.emit_customer_leaving(id)
 	nav_target = exit_target
 
 func for_fun():

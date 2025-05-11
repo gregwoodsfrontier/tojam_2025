@@ -4,7 +4,7 @@ var id = 0
 var debug = true
 
 enum FOOD_TYPE {
-	BURGER, GYUDON, SALAD
+	CAKE, GYUDON, SALAD
 }
 
 enum REQUEST_STAT {

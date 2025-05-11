@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://b0emk12qhmylg"]
+[gd_scene load_steps=3 format=3 uid="uid://b0emk12qhmylg"]
 
 [ext_resource type="Texture2D" uid="uid://kjmhuxk2ufuj" path="res://scenes/game_objects/chair/Kitchen_Singles_275.png" id="1_c82ty"]
+[ext_resource type="Script" uid="uid://dj22kjabnl16s" path="res://scenes/game_objects/chair/chair.gd" id="2_5ptq4"]
 
 [node name="Chair" type="Sprite2D" groups=["chair"]]
 texture = ExtResource("1_c82ty")
+script = ExtResource("2_5ptq4")
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(0, 4)

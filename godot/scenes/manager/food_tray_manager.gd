@@ -17,9 +17,9 @@ func serve_food(_food: Globals.FOOD_TYPE):
 	var index = player_held_food.find(_food)
 	player_held_food.pop_at(index)
 
-func _on_meal_served(_food_wanted: Globals.FOOD_TYPE):
+func _on_meal_served(_id: int, _food_wanted: Globals.FOOD_TYPE):
 	var result = check_if_tray_has_correct_food(_food_wanted)
-	GameEvents.emit_tray_checked(result)
+	GameEvents.emit_tray_checked(_id, result)
 
 func check_if_tray_has_correct_food(_food_wanted: Globals.FOOD_TYPE) -> bool:
 	var index = player_held_food.find(_food_wanted)
