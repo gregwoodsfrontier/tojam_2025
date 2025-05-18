@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var thinking_timer: Timer = $ThinkingTimer
 @onready var waiting_timer: Timer = $WaitingTimer
 @onready var leave_timer: Timer = $LeaveTimer
+@onready var velocity_component: VelocityComponent = $VelocityComponent
 
 @export var request_info: Request
 @export var exit_target: Marker2D
@@ -37,17 +38,11 @@ func _ready():
 	interactable.interact = Callable(self, "_on_interact")
 	interactable.action_name = dialog[tracker]
 
-func _physics_process(delta: float) -> void:
-	var direction = _get_nav_direction()
-	#if navigation_agent_2d.is_navigation_finished():
-		#direction = Vector2.ZERO
-	
-	var target_velocity =  direction * MAX_SPEED
-	velocity = velocity.lerp(target_velocity, 1 - exp(- delta * ACCELERATION_SMOOTHING))
+func _process(delta: float) -> void:
+	velocity_component.direction = _get_nav_direction()
 	if navigation_agent_2d.is_navigation_finished() && !leave_timer.is_stopped():
 		leave_timer.stop()
 		queue_free()
-	move_and_slide()
 
 func set_food_wanted(_food: Globals.FOOD_TYPE):
 	food_wanted = _food
@@ -69,10 +64,14 @@ func get_exit_target() -> Node2D:
 
 func _get_nav_direction() -> Vector2:
 	var direction := Vector2.ZERO
+	var next_point := navigation_agent_2d.get_next_path_position()
+	var distance_to_next := global_position.distance_to(next_point)
 	if nav_target == null:
 		return Vector2.ZERO
 	navigation_agent_2d.target_position = nav_target.global_position
-	direction = navigation_agent_2d.get_next_path_position() - global_position
+	if distance_to_next < navigation_agent_2d.target_desired_distance:
+		return Vector2.ZERO
+	direction = next_point - global_position
 	direction = direction.normalized()
 	return direction
 

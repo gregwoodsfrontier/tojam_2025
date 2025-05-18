@@ -19,9 +19,9 @@
 [ext_resource type="PackedScene" uid="uid://ctlpihforjxxn" path="res://scenes/ui/scoreUI/tip_UI.tscn" id="18_q7kwb"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_th7mp"]
-vertices = PackedVector2Array(575.93, 275.977, 79.6797, 275, 172, 270, 276, 270, 132, 270, 575.062, 208.969, 556, 270, 556, 219, 412.898, 207.992, 516, 219, 62.3281, 5.10938, 100.227, 5.89844, 103.148, 66.2812, 132, 219, 172, 219, 516, 270, 428, 270, 428, 219, 388, 219, 388, 270, 316, 270, 316, 219, 276, 219)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 2, 1), PackedInt32Array(5, 0, 6, 7), PackedInt32Array(8, 5, 7, 9), PackedInt32Array(1, 10, 11, 12), PackedInt32Array(4, 1, 12, 13), PackedInt32Array(13, 12, 8, 14), PackedInt32Array(9, 15, 16, 17), PackedInt32Array(8, 9, 17), PackedInt32Array(8, 17, 18), PackedInt32Array(15, 6, 0), PackedInt32Array(16, 15, 0), PackedInt32Array(19, 16, 0), PackedInt32Array(19, 0, 20), PackedInt32Array(18, 19, 20, 21), PackedInt32Array(8, 18, 21), PackedInt32Array(8, 21, 22), PackedInt32Array(14, 8, 22), PackedInt32Array(14, 22, 3, 2), PackedInt32Array(0, 3, 20)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(57, 0, 75, 280, 581, 281, 580, 204, 414, 203, 108, 63, 105, 1)])
+vertices = PackedVector2Array(594.609, 288.938, 76.7422, 284.039, 171, 270, 277, 270, 133, 270, 588.32, 201.719, 555, 270, 555, 219, 395.844, 189.938, 517, 219, 133, 219, 62.2578, 5.10938, 103.156, 66.3828, 517, 270, 427, 270, 427, 219, 389, 219, 100.227, 5.89844, 171, 219, 389, 270, 315, 270, 315, 219, 277, 219)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 2, 1), PackedInt32Array(5, 0, 6, 7), PackedInt32Array(8, 5, 7, 9), PackedInt32Array(10, 4, 1, 11, 12), PackedInt32Array(9, 13, 14, 15), PackedInt32Array(8, 9, 15), PackedInt32Array(8, 15, 16), PackedInt32Array(11, 17, 12), PackedInt32Array(10, 12, 8, 18), PackedInt32Array(13, 6, 0), PackedInt32Array(14, 13, 0), PackedInt32Array(19, 14, 0), PackedInt32Array(19, 0, 20), PackedInt32Array(16, 19, 20, 21), PackedInt32Array(8, 16, 21), PackedInt32Array(8, 21, 22), PackedInt32Array(18, 8, 22), PackedInt32Array(18, 22, 3, 2), PackedInt32Array(0, 3, 20)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(57, 0, 72, 289, 600, 294, 593, 197, 397, 185, 108, 63, 105, 1)])
 agent_radius = 5.0
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5jhce"]
