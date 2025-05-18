@@ -51,7 +51,7 @@ func _input(event):
 	if event.is_action_pressed("interact") && can_interact:
 		if active_areas.size() > 0:
 			can_interact = false
-			await active_areas[0].interact.call()
+			await active_areas[0].interact.call(self)
 			if interact_label == null:
 				return
 			else:

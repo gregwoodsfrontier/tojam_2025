@@ -5,7 +5,7 @@ class_name Interactable
 
 @export var action_name: String
 
-var interact: Callable = func():
+var interact: Callable = func(_area: Area2D):
 	pass
 
 func _ready():
