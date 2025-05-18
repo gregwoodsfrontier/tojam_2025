@@ -1,10 +1,11 @@
-[gd_scene load_steps=33 format=3 uid="uid://p3j4ym5blysp"]
+[gd_scene load_steps=34 format=3 uid="uid://p3j4ym5blysp"]
 
 [ext_resource type="Texture2D" uid="uid://bk4rh3t6a77jk" path="res://scenes/game_objects/basic_customer/customer_idle_walk.png" id="1_ss4lh"]
 [ext_resource type="Script" uid="uid://ckcporpslivaw" path="res://scenes/game_objects/basic_customer/basic_customer.gd" id="1_uq4sn"]
 [ext_resource type="PackedScene" uid="uid://dc3kgp8jm8aek" path="res://scenes/component/interactable.tscn" id="2_hc6w8"]
 [ext_resource type="Script" uid="uid://c0w3yxlctsndj" path="res://scenes/game_objects/basic_customer/customer_state_machine.gd" id="4_e1cfr"]
 [ext_resource type="PackedScene" uid="uid://bpwr21jxmxt16" path="res://scenes/component/velocity_component.tscn" id="5_rr07q"]
+[ext_resource type="PackedScene" uid="uid://d10axlpwc01i0" path="res://scenes/component/indicator_comp.tscn" id="6_ivq7x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hc6w8"]
 atlas = ExtResource("1_ss4lh")
@@ -234,7 +235,6 @@ avoidance_enabled = true
 
 [node name="ThinkingTimer" type="Timer" parent="."]
 one_shot = true
-autostart = true
 
 [node name="WaitingTimer" type="Timer" parent="."]
 wait_time = 60.0
@@ -250,3 +250,6 @@ basic_customer = NodePath("..")
 [node name="VelocityComponent" parent="." node_paths=PackedStringArray("character") instance=ExtResource("5_rr07q")]
 character = NodePath("..")
 max_speed = 150.0
+
+[node name="IndicatorComp" parent="." instance=ExtResource("6_ivq7x")]
+position = Vector2(0, -37)
