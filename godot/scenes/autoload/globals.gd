@@ -12,7 +12,7 @@ const food_sprite_paths = [
 var food_texture = []
 
 enum FOOD_TYPE {
-	PASTA, PIZZA, RICE
+	PASTA, PIZZA, RICE, EMPTY = -1
 }
 
 enum REQUEST_STAT {

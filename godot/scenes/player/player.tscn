@@ -44,4 +44,5 @@ shape = SubResource("CircleShape2D_gmlin")
 debug_color = Color(0.776471, 0.8, 0.329412, 0.196078)
 
 [node name="IndicatorComp" parent="." instance=ExtResource("4_lvxji")]
-position = Vector2(-23, -10)
+position = Vector2(0, -50)
+scale = Vector2(3, 3)

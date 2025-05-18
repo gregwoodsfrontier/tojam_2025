@@ -1,13 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://d10axlpwc01i0"]
+[gd_scene load_steps=6 format=3 uid="uid://d10axlpwc01i0"]
 
-[ext_resource type="Texture2D" uid="uid://l0guvtolsb4l" path="res://sprites/indicator.png" id="1_0g8xr"]
+[ext_resource type="Texture2D" uid="uid://cmeq67hd3tw06" path="res://sprites/ui_icons/UI_16x16.png" id="1_8dfgp"]
 [ext_resource type="Script" uid="uid://dfpbgqno4efqw" path="res://scenes/component/indicator_comp.gd" id="2_basxv"]
+[ext_resource type="Texture2D" uid="uid://d38dy8fcrs18a" path="res://sprites/12_Kitchen_16x16.png" id="3_iud0j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hs87j"]
+atlas = ExtResource("1_8dfgp")
+region = Rect2(82, 8, 12, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iy7s2"]
+atlas = ExtResource("3_iud0j")
+region = Rect2(2, 353, 12, 11)
 
 [node name="IndicatorComp" type="Sprite2D" node_paths=PackedStringArray("food_carried")]
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("1_0g8xr")
+texture = SubResource("AtlasTexture_hs87j")
 script = ExtResource("2_basxv")
 food_carried = NodePath("FoodCarried")
 
 [node name="FoodCarried" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -2)
 scale = Vector2(0.667, 0.667)
+texture = SubResource("AtlasTexture_iy7s2")
