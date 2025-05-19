@@ -1,6 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://x3jpfyxctw32"]
+[gd_scene load_steps=5 format=3 uid="uid://x3jpfyxctw32"]
 
 [ext_resource type="Script" uid="uid://bm0d0076he33h" path="res://scenes/ui/timeUI/arena_time_ui.gd" id="1_oa7xr"]
+[ext_resource type="Texture2D" uid="uid://b0y206ubxlkos" path="res://sprites/ui_icons/Modern_UI_Style_1.png" id="2_gwxsb"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oau1h"]
+texture = ExtResource("2_gwxsb")
+texture_margin_left = 16.0
+texture_margin_top = 8.0
+texture_margin_right = 16.0
+texture_margin_bottom = 5.0
+region_rect = Rect2(8, 8, 32, 31)
 
 [sub_resource type="LabelSettings" id="LabelSettings_fd0oo"]
 font_size = 22
@@ -15,13 +24,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_override_constants/margin_left = 16
+theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 
-[node name="Label" type="Label" parent="MarginContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_oau1h")
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-text = "hahaha"
+text = "0:00"
 label_settings = SubResource("LabelSettings_fd0oo")
