@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 @onready var indicator_comp: Sprite2D = $IndicatorComp
 

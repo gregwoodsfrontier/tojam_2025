@@ -16,7 +16,6 @@ func _on_interactor_area_entered(other_area: Interactable):
 func _on_interactor_area_exited(other_area: Interactable):
 	unregister_area(other_area)
 
-
 func register_area(other_area: Interactable):
 	active_areas.push_back(other_area)
 
@@ -25,10 +24,26 @@ func unregister_area(other_area: Interactable):
 	if area_to_remove_index != -1:
 		active_areas.remove_at(area_to_remove_index)
 
+func hide_debug(other_area: Interactable):
+	if other_area.get_parent() is DishItem:
+		(other_area.get_parent() as DishItem).debug.visible = false
+
+func show_dish_debug():
+	var dish_area_array = active_areas.filter(func(e): return e.get_parent() is DishItem)
+	if dish_area_array.size() == 0:
+		return
+	for i in dish_area_array.size():
+		var dish = dish_area_array[i].get_parent()
+		if i != 0:
+			dish.debug.visible = false
+		else:
+			dish.debug.visible = true
+
 func _process(delata:float):
 	if active_areas.size() > 0 and can_interact:
 		active_areas.sort_custom(_sort_by_distance_with_owner)
 		# something to show it is interactable now
+		show_dish_debug()
 		if interact_label == null:
 			return
 		else:

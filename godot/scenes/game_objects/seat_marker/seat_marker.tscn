@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dikvdghiv6lbx"]
+
+[ext_resource type="Script" uid="uid://7btcmv31gn6u" path="res://scenes/game_objects/seat_marker/seat_marker.gd" id="1_i8b7d"]
+
+[node name="SeatMarker" type="Marker2D"]
+script = ExtResource("1_i8b7d")
