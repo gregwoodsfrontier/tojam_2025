@@ -21,6 +21,11 @@
 [ext_resource type="PackedScene" uid="uid://ctlpihforjxxn" path="res://scenes/ui/scoreUI/tip_UI.tscn" id="18_q7kwb"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_th7mp"]
+vertices = PackedVector2Array(516, 193, 516, 163, 557.063, 141.008, 558.938, 288, 125.797, 141.977, 476, 163, 436, 288, 436, 259, 476, 193, 396, 259, 356, 193, 356, 163, 196, 193, 196, 163, 316, 163, 316, 193, 260, 259, 220, 259, 173.047, 288, 172.047, 387.898, 81.0391, 386.094, 82.9531, 190, 123.797, 190, 396, 288, 260, 288, 220, 288, 156, 193, 156, 163)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 2, 1, 5), PackedInt32Array(0, 3, 6, 7, 8), PackedInt32Array(5, 8, 7, 9, 10, 11), PackedInt32Array(12, 13, 14, 15, 16, 17), PackedInt32Array(18, 19, 20, 21, 22), PackedInt32Array(15, 10, 9, 23, 24, 16), PackedInt32Array(17, 25, 18, 22, 26), PackedInt32Array(4, 5, 11), PackedInt32Array(4, 11, 14), PackedInt32Array(4, 14, 13), PackedInt32Array(4, 13, 27), PackedInt32Array(22, 4, 27, 26), PackedInt32Array(12, 17, 26)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(76, 391, 78, 185, 119, 185, 121, 137, 562, 136, 564, 293, 178, 293, 177, 393)])
+source_geometry_mode = 1
+source_geometry_group_name = &"navigation"
 agent_radius = 5.0
 
 [node name="IngameScene" type="Node2D"]
@@ -40,8 +45,8 @@ arean_time_manager = NodePath("../ArenaTimeManager")
 
 [node name="TipManager" parent="." instance=ExtResource("6_o7ls4")]
 
-[node name="CustomerManager" parent="." node_paths=PackedStringArray("spawn_point_group") instance=ExtResource("3_th7mp")]
-spawn_point_group = [NodePath("../SpawnMarkerB")]
+[node name="CustomerManager" parent="." node_paths=PackedStringArray("spawn_point") instance=ExtResource("3_th7mp")]
+spawn_point = NodePath("../SpawnMarkerB")
 
 [node name="RequestManager" parent="." node_paths=PackedStringArray("food_tray_manager") instance=ExtResource("2_etwux")]
 food_tray_manager = NodePath("../FoodTrayManager")
@@ -71,11 +76,11 @@ tile_set = ExtResource("4_iid22")
 tile_map_data = PackedByteArray("AAAfAAUAAAAAAAIAAAAgAAUAAAABAAIAAAAfAAEAAAAAAAMAAAAeAAEAAAABAAIAAAAdAAEAAAABAAIAAAAcAAEAAAABAAIAAAAbAAEAAAABAAIAAAAaAAEAAAABAAIAAAAZAAEAAAABAAIAAAAYAAEAAAABAAIAAAAXAAEAAAABAAIAAAAWAAEAAAABAAIAAAAVAAEAAAABAAIAAAAUAAEAAAABAAIAAAATAAEAAAABAAIAAAASAAEAAAABAAIAAAARAAEAAAABAAIAAAAQAAEAAAABAAIAAAAhAAUAAAABAAIAAAAiAAUAAAABAAIAAAAjAAUAAAABAAIAAAAkAAUAAAAAAAMAAAAfAAIAAAAAAAEAAAAfAAMAAAAAAAEAAAAfAAQAAAAAAAEAAAAkAAYAAAAAAAEAAAAkAAcAAAAAAAEAAAAkAAgAAAAAAAEAAAAkAAkAAAAAAAEAAAAkAAoAAAAAAAEAAAAkAAsAAAAAAAEAAAAkAAwAAAAAAAEAAAAkAA0AAAAAAAEAAAAkAA4AAAAAAAEAAAAkAA8AAAAAAAIAAAAlAA8AAAABAAIAAAAmAA8AAAABAAIAAAAnAA8AAAABAAIAAAAGAAEAAAACAAMAAAAHAAEAAAABAAIAAAAIAAEAAAABAAIAAAAJAAEAAAABAAIAAAAKAAEAAAABAAIAAAALAAEAAAABAAIAAAAMAAEAAAABAAIAAAANAAEAAAABAAIAAAAOAAEAAAABAAIAAAAPAAEAAAABAAIAAAAEAAoAAAACAAMAAAAEAAsAAAACAAEAAAAEAAwAAAACAAEAAAAEAA0AAAACAAEAAAAEAA4AAAACAAEAAAAEAA8AAAACAAEAAAAEABAAAAACAAEAAAAEABEAAAACAAEAAAAEABIAAAACAAEAAAAEABMAAAACAAEAAAAEABQAAAACAAEAAAAEABUAAAACAAEAAAAEABYAAAACAAEAAAAFAAoAAAABAAIAAAAGAAoAAAACAAIAAAAGAAkAAAACAAEAAAAGAAIAAAACAAEAAAAGAAMAAAACAAEAAAAGAAQAAAACAAEAAAAGAAUAAAACAAEAAAAGAAYAAAACAAEAAAAGAAcAAAACAAEAAAAGAAgAAAACAAEAAAA=")
 tile_set = ExtResource("6_ilpo5")
 
-[node name="Furnitures" type="TileMapLayer" parent="RoomLayout"]
+[node name="Furnitures" type="TileMapLayer" parent="RoomLayout" groups=["navigation"]]
 tile_map_data = PackedByteArray("AAANABEAAgACAAsAAAAOABEAAgAGABQAAAAQABEAAgACAAsAAAAJAAsAAgAEAAsAAAATAAsAAgAGAAsAAAAdAAsAAgAHAAsAAAAKAAsAAgAGABIAAAAMAAsAAgAHAA0AAAAUAAsAAgAGABYAAAAWAAsAAgAFAA0AAAAeAAsAAgAGABQAAAAgAAsAAgAEAA0AAAAYABEAAgADAAwAAAAZABEAAgAGABIAAAAbABEAAgADAAwAAAATAAIAAgAJABcAAAAUAAIAAgAKABcAAAASAAIAAgAIAAsAAAARAAIAAgAIAAsAAAASAAAAAgALAB4AAAARAAAAAgALAB4AAAAOAAEAAgAEAAYAAAAOAAIAAgAEAAcAAAAPAAEAAgAFAAYAAAAPAAIAAgAFAAcAAAAQAAEAAgAGAAYAAAAQAAIAAgAGAAcAAAAVAAEAAgAEAAYAAAAVAAIAAgAEAAcAAAAWAAEAAgAFAAYAAAAWAAIAAgAFAAcAAAAXAAEAAgAGAAYAAAAXAAIAAgAGAAcAAAA=")
 tile_set = ExtResource("8_pxehq")
 
-[node name="FoodTable" type="TileMapLayer" parent="RoomLayout"]
+[node name="FoodTable" type="TileMapLayer" parent="RoomLayout" groups=["navigation"]]
 tile_map_data = PackedByteArray("AAAOAAUAAgAMABUAAAAPAAUAAgANABUAAAAQAAUAAgAOABUAAAASAAUAAgAMABUAAAATAAUAAgANABUAAAAUAAUAAgAOABUAAAAWAAUAAgAMABUAAAAXAAUAAgANABUAAAAYAAUAAgAOABUAAAA=")
 tile_set = ExtResource("8_pxehq")
 
@@ -148,7 +153,7 @@ position = Vector2(198, 100)
 position = Vector2(320, 180)
 
 [node name="SpawnMarkerB" type="Marker2D" parent="." groups=["exit"]]
-position = Vector2(81, 9)
+position = Vector2(125, 379)
 
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 99

@@ -2,10 +2,10 @@ extends Node
 
 @onready var spawn_timer: Timer = $SpawnTimer
 @onready var customer_group := get_tree().get_nodes_in_group("customer")
-@onready var chair_groups := get_tree().get_nodes_in_group("chair")
+@onready var chair_groups := get_tree().get_nodes_in_group("seat")
 
 @export var customer_scene : PackedScene
-@export var spawn_point_group: Array[Marker2D]
+@export var spawn_point: Marker2D
 
 const TIP_RANGE = [2, 5]
 const SPAWN_TIME_AFTER_FIRST = 3
@@ -27,28 +27,29 @@ func spawn_customer(px: float, py: float):
 	add_child(customer_instance)
 	#var rand_chair = assign_chair(customer_instance)
 	assign_chair(customer_instance)
-	customer_instance.set_exit_target(spawn_point_group[0])
+	customer_instance.set_exit_target(spawn_point)
 	customer_instance.set_tip(randi_range(TIP_RANGE[0], TIP_RANGE[1]))
 	#GameEvents.emit_seat_assigned(customer_instance.id, rand_chair)
 	spawn_timer.wait_time = SPAWN_TIME_AFTER_FIRST
 
 func assign_chair(_customer_instance: Node2D):
-	var spare_seats = chair_groups.filter(func(chair: Chair): return !chair.get_is_taken())
+	var spare_seats = chair_groups.filter(func(seat: SeatMarker): return !seat.is_occupied)
 	if spare_seats.size() <= 0:
 		print("No more chairs left.")
 		return
 	var rand_chair = spare_seats.pick_random()
 	_customer_instance.set_chair_target(rand_chair)
-	var chair_index = chair_groups.find(rand_chair)
-	chair_groups[chair_index].set_is_taken(true)
+	#var chair_index = chair_groups.find(rand_chair)
+	var chair_index = 0
+	#chair_groups[chair_index].set_is_taken(true)
+	chair_groups[chair_index].is_occupied = true
 	chair_customer_map[chair_index] = _customer_instance.id
 	return rand_chair
 
 func _on_spawn_timer_timeout():
 	var spare_seats = chair_groups.filter(func(chair: Chair): return !chair.get_is_taken())
-	if spawn_point_group.size() == 0 or spare_seats.size() == 0:
+	if spawn_point == null:
 		return
-	var spawn_point = spawn_point_group[0] as Marker2D
 	spawn_customer(spawn_point.global_position.x, spawn_point.global_position.y)
 
 func _on_customer_leaving(target_id: int):

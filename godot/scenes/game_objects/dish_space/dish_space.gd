@@ -17,7 +17,7 @@ func _ready():
 	interactable.area_exited.connect(_on_area_exited)
 	is_occupied = false
 
-func _on_interact():
+func _on_interact(_area: Area2D):
 	print("I am picked")
 
 func _on_area_exited(area: Area2D):
