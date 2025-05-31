@@ -6,6 +6,4 @@
 script = ExtResource("1_olv17")
 
 [node name="ProcessTimer" type="Timer" parent="."]
-wait_time = 3.0
-one_shot = true
-autostart = true
+wait_time = 2.0

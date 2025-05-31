@@ -4,63 +4,56 @@ extends Node
 
 @onready var process_timer: Timer = $ProcessTimer
 
-const READY_MEAL_SIZE_lIMIT = 3
-
 var request_pool = []
-var ready_meals = []
-var process_time = 3.0
 
 func _ready():
-	GameEvents.ready_to_order.connect(_on_ready_to_order)
-	GameEvents.kitchen_interacted.connect(_on_kitchen_interacted)
+	request_pool = [
+		{
+			"dish" = Globals.FOOD_TYPE.RICE,
+			"is_ready" = false,
+			"cook_time" = 3.0
+		},
+		{
+			"dish" = Globals.FOOD_TYPE.PASTA,
+			"is_ready" = false,
+			"cook_time" = 4.0
+		},
+		{
+			"dish" = Globals.FOOD_TYPE.PIZZA,
+			"is_ready" = false,
+			"cook_time" = 5.0
+		}
+	]
+	
 	process_timer.timeout.connect(_on_process_timer_timeout)
 
-func _on_ready_to_order(id: int, food_type: Globals.FOOD_TYPE, tip: int):
-	add_request(id, food_type, tip)
+func _make_kitchen_process_order():
+	var dish_space_pool := get_tree().get_nodes_in_group("dish_space")
+	var ready_request_pool = request_pool.filter(func(e): return e["is_ready"] == false)
+	if ready_request_pool.is_empty():
+		return
+	var first_request = ready_request_pool[0]
+	first_request.is_ready = true
+	
+	var empty_space_pool = dish_space_pool.filter(func(e): return e.visible == false)
+	if empty_space_pool.is_empty():
+		return
+	print(empty_space_pool[0].food_id)
+	(empty_space_pool[0] as DishSpace).set_food_id(first_request["dish"])
+	print(empty_space_pool[0].food_id)
+	print("test")
 
-func add_request(id: int, food_type: Globals.FOOD_TYPE, tip: int):
-	var request = {
-		"customer_id" = id,
-		"food" = food_type,
-		"tip" = tip,
-		"status" = Globals.REQUEST_STAT.QUEUE
-	}
-	request_pool.push_back(request)
-
-func do_the_request():
-	if request_pool.size() > 0 && process_timer.is_stopped():
-		var now_process_request = request_pool.filter(func(e): return e["status"] == Globals.REQUEST_STAT.QUEUE)
-		if now_process_request.size() <= 0:
-			return
-		now_process_request[0]["status"] = Globals.REQUEST_STAT.PROCESSING
-		process_timer.wait_time = process_time
-		process_timer.start()
-		
+func check_process_availability():
+	var ready_request_pool = request_pool.filter(func(e): return e["is_ready"] == false)
+	return !ready_request_pool.is_empty() and process_timer.is_stopped()
 
 func _process(delta: float):
-	do_the_request()
+	if check_process_availability():
+		process_timer.start()
 
 func _on_process_timer_timeout():
-	#this might introduce bugs later
-	var processing_req = request_pool.filter(func(e): return e["status"] == Globals.REQUEST_STAT.PROCESSING)
-	if processing_req.size() <= 0:
-		return
-	processing_req[0]["status"] = Globals.REQUEST_STAT.SERVE_READY
-	# this code will send events to kitchen.
-	#GameEvents.emit_request_complete(finished_request)
-	if ready_meals.size() >= READY_MEAL_SIZE_lIMIT:
-		print("ready meal size is at limit.")
-		return
-		
-	var finished_request = processing_req.pop_front()
-	ready_meals.push_back(finished_request)
-	print("request_complete fire.")
-	#complete_request_pool.push_back(finished_request)
+	_make_kitchen_process_order()
 
 func _on_kitchen_interacted():
-	if ready_meals.size() <= 0:
-		print("No meals ready for pickup.")
-		return
-	var ready_request = ready_meals.pop_front()
-	var ready_food = ready_request["food"]
-	food_tray_manager.get_food(ready_food)	
+	# it should grab a dish from the table
+	pass

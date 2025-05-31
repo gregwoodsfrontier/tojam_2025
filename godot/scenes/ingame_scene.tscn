@@ -122,27 +122,35 @@ position = Vector2(440, 280)
 position = Vector2(233, 90)
 
 [node name="DishSpace2" parent="DishSpaces" groups=["dish_space"] instance=ExtResource("15_o7ls4")]
+visible = false
 position = Vector2(263, 90)
 
 [node name="DishSpace3" parent="DishSpaces" groups=["dish_space"] instance=ExtResource("15_o7ls4")]
+visible = false
 position = Vector2(248, 90)
 
 [node name="DishSpace4" parent="DishSpaces" groups=["dish_space"] instance=ExtResource("15_o7ls4")]
+visible = false
 position = Vector2(361, 90)
 
 [node name="DishSpace5" parent="DishSpaces" groups=["dish_space"] instance=ExtResource("15_o7ls4")]
+visible = false
 position = Vector2(391, 90)
 
 [node name="DishSpace6" parent="DishSpaces" groups=["dish_space"] instance=ExtResource("15_o7ls4")]
+visible = false
 position = Vector2(376, 90)
 
 [node name="DishSpace7" parent="DishSpaces" groups=["dish_space"] instance=ExtResource("15_o7ls4")]
+visible = false
 position = Vector2(297, 90)
 
 [node name="DishSpace8" parent="DishSpaces" groups=["dish_space"] instance=ExtResource("15_o7ls4")]
+visible = false
 position = Vector2(327, 90)
 
 [node name="DishSpace9" parent="DishSpaces" groups=["dish_space"] instance=ExtResource("15_o7ls4")]
+visible = false
 position = Vector2(312, 90)
 
 [node name="Player" parent="." instance=ExtResource("4_7v5ay")]

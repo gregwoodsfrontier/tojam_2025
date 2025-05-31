@@ -1,13 +1,10 @@
 extends Node2D
 class_name DishSpace
 
-var is_occupied := false:
-	set(value):
-		self.visible = value
+var test = 0.0
 
-var food_id := 0:
-	set(value):
-		animated_sprite_2d.set_frame(value)
+@export var food_id := Globals.FOOD_TYPE.EMPTY
+
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var debug: Label = $Debug
 @onready var interactable: Interactable = $Interactable
@@ -15,7 +12,17 @@ var food_id := 0:
 func _ready():
 	interactable.interact = Callable(self, "_on_interact")
 	interactable.area_exited.connect(_on_area_exited)
-	is_occupied = false
+
+func set_food_id(value):
+	food_id = value
+	if value == -1:
+		self.visible = false
+		return
+	self.visible = true
+	animated_sprite_2d.set_frame(value)
+
+func get_occupied_state():
+	return self.visible
 
 func _on_interact(_area: Area2D):
 	print("I am picked")
