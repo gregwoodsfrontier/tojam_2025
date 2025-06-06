@@ -119,6 +119,7 @@ position = Vector2(440, 280)
 [node name="DishSpaces" type="Node2D" parent="."]
 
 [node name="DishSpace" parent="DishSpaces" groups=["dish_space"] instance=ExtResource("15_o7ls4")]
+visible = false
 position = Vector2(233, 90)
 
 [node name="DishSpace2" parent="DishSpaces" groups=["dish_space"] instance=ExtResource("15_o7ls4")]

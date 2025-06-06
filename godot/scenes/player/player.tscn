@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://8dom6sfuhkm2"]
+[gd_scene load_steps=8 format=3 uid="uid://8dom6sfuhkm2"]
 
 [ext_resource type="Texture2D" uid="uid://cqlsna11nscxq" path="res://sprites/random_dude_01.png" id="1_8afob"]
 [ext_resource type="Script" uid="uid://dso2pv4q0qrwd" path="res://scenes/player/player.gd" id="1_dovo2"]
+[ext_resource type="PackedScene" uid="uid://c8slgwop7g3iv" path="res://scenes/component/food_tray_component.tscn" id="2_p47bc"]
 [ext_resource type="PackedScene" uid="uid://d31i2jouq1tvb" path="res://scenes/component/interactor_comp.tscn" id="3_gmlin"]
 [ext_resource type="PackedScene" uid="uid://d10axlpwc01i0" path="res://scenes/component/indicator_comp.tscn" id="4_lvxji"]
 
@@ -15,6 +16,8 @@ radius = 26.0
 collision_layer = 16
 collision_mask = 12
 script = ExtResource("1_dovo2")
+
+[node name="FoodTrayComponent" parent="." instance=ExtResource("2_p47bc")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -15)

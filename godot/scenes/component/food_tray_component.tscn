@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8slgwop7g3iv"]
+
+[ext_resource type="Script" uid="uid://b28h4kicbw3e1" path="res://scenes/component/food_tray_component.gd" id="1_gs5m1"]
+
+[node name="FoodTrayComponent" type="Node"]
+script = ExtResource("1_gs5m1")

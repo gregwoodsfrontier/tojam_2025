@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 @onready var indicator_comp: Sprite2D = $IndicatorComp
+@onready var food_tray_component: Node = $FoodTrayComponent
 
 const MAX_SPEED := 125.0
 const ACCELERATION_SMOOTHING = 25.0
@@ -20,6 +21,9 @@ func get_movement_vec() -> Vector2:
 	var x_move := Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	var y_move := Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 	return Vector2(x_move, y_move)
+
+func is_foodtray_empty():
+	return food_tray_component.collect_dish_id == Globals.FOOD_TYPE.EMPTY
 
 func _on_tray_item_released():
 	if indicator_comp == null:

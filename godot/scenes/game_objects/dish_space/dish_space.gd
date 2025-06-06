@@ -1,9 +1,7 @@
 extends Node2D
 class_name DishSpace
 
-var test = 0.0
-
-@export var food_id := Globals.FOOD_TYPE.EMPTY
+@export var food_id : int = Globals.FOOD_TYPE.EMPTY
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var debug: Label = $Debug
@@ -24,8 +22,18 @@ func set_food_id(value):
 func get_occupied_state():
 	return self.visible
 
+
 func _on_interact(_area: Area2D):
-	print("I am picked")
+	if food_id == Globals.FOOD_TYPE.EMPTY:
+		return
+	var parent_node = _area.get_parent()
+	if  parent_node is Player:
+		if (parent_node as Player).is_foodtray_empty():
+			GameEvents.emit_dish_collected(food_id)
+			set_food_id(Globals.FOOD_TYPE.EMPTY)
+		else:
+			print("food tray is full")
+
 
 func _on_area_exited(area: Area2D):
 	if area.get_parent() is Player:

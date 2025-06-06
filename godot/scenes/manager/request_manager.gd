@@ -1,5 +1,7 @@
 extends Node
 
+var dish_space_pool : Array[Node] = []
+
 @export var food_tray_manager: FoodTrayManager
 
 @onready var process_timer: Timer = $ProcessTimer
@@ -26,9 +28,9 @@ func _ready():
 	]
 	
 	process_timer.timeout.connect(_on_process_timer_timeout)
+	dish_space_pool = get_tree().get_nodes_in_group("dish_space")
 
 func _make_kitchen_process_order():
-	var dish_space_pool := get_tree().get_nodes_in_group("dish_space")
 	var ready_request_pool = request_pool.filter(func(e): return e["is_ready"] == false)
 	if ready_request_pool.is_empty():
 		return
@@ -45,7 +47,10 @@ func _make_kitchen_process_order():
 
 func check_process_availability():
 	var ready_request_pool = request_pool.filter(func(e): return e["is_ready"] == false)
-	return !ready_request_pool.is_empty() and process_timer.is_stopped()
+	var empty_space_pool = dish_space_pool.filter(func(e): return e.visible == false)
+	var no_request = ready_request_pool.is_empty()
+	var no_space = empty_space_pool.is_empty()
+	return !no_request and process_timer.is_stopped() and !no_space
 
 func _process(delta: float):
 	if check_process_availability():

@@ -11,7 +11,11 @@ signal tip_given
 signal customer_leaving
 signal food_collected_by_tray
 signal tray_item_released
-signal seat_assigned
+signal seat_assigned(_id: int, _chair: Chair)
+signal dish_collected(dish: DishSpace)
+
+func emit_dish_collected(food_id: int):
+	dish_collected.emit(food_id)
 
 func emit_seat_assigned(_id: int, _chair: Chair):
 	seat_assigned.emit(_id, _chair)
