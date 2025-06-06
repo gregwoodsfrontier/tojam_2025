@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://be3t2x7tov8dt"]
+
+[ext_resource type="Script" uid="uid://l7a0gm8juasd" path="res://scenes/game_objects/chef/chef.gd" id="1_dkvp2"]
+[ext_resource type="Texture2D" uid="uid://bkhgtiqo3jj8s" path="res://sprites/CHEF.png" id="1_yvf7r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dkvp2"]
+atlas = ExtResource("1_yvf7r")
+region = Rect2(288, 0, 16, 32)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dkvp2"]
+bg_color = Color(0.442094, 0.175284, 0.120098, 1)
+border_width_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ien5"]
+bg_color = Color(0.278431, 0.592157, 0.454902, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.439216, 0.176471, 0.121569, 1)
+
+[node name="Chef" type="Node2D"]
+script = ExtResource("1_dkvp2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+texture = SubResource("AtlasTexture_dkvp2")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 6)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -39.0
+offset_right = 16.0
+offset_bottom = -33.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(16, 3)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_dkvp2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_2ien5")
+max_value = 1.0
+value = 0.5
+show_percentage = false

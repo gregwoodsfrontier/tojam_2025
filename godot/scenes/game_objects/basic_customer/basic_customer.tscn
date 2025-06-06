@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://p3j4ym5blysp"]
+[gd_scene load_steps=36 format=3 uid="uid://p3j4ym5blysp"]
 
 [ext_resource type="Texture2D" uid="uid://bk4rh3t6a77jk" path="res://scenes/game_objects/basic_customer/customer_idle_walk.png" id="1_ss4lh"]
 [ext_resource type="Script" uid="uid://ckcporpslivaw" path="res://scenes/game_objects/basic_customer/basic_customer.gd" id="1_uq4sn"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://c0w3yxlctsndj" path="res://scenes/game_objects/basic_customer/customer_state_machine.gd" id="4_e1cfr"]
 [ext_resource type="PackedScene" uid="uid://bpwr21jxmxt16" path="res://scenes/component/velocity_component.tscn" id="5_rr07q"]
 [ext_resource type="PackedScene" uid="uid://d10axlpwc01i0" path="res://scenes/component/indicator_comp.tscn" id="6_ivq7x"]
+[ext_resource type="Texture2D" uid="uid://dj7xy4ol3jg8g" path="res://sprites/ui_icons/UI_thinking_emotes_animation_16x16.png" id="7_buiuq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hc6w8"]
 atlas = ExtResource("1_ss4lh")
@@ -198,6 +199,10 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_skbxf"]
+atlas = ExtResource("7_buiuq")
+region = Rect2(49, 145, 14, 15)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_ss4lh"]
 radius = 7.0
 
@@ -225,12 +230,18 @@ sprite_frames = SubResource("SpriteFrames_skbxf")
 animation = &"front_idle"
 autoplay = "front_idle"
 
+[node name="IndicatorComp" parent="." instance=ExtResource("6_ivq7x")]
+visible = false
+position = Vector2(0, -37)
+
+[node name="ThinkingIcon" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -30)
+texture = SubResource("AtlasTexture_skbxf")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -9)
 shape = SubResource("CircleShape2D_ss4lh")
-
-[node name="IndicatorComp" parent="." instance=ExtResource("6_ivq7x")]
-position = Vector2(0, -37)
 
 [node name="Interactable" parent="." instance=ExtResource("2_hc6w8")]
 

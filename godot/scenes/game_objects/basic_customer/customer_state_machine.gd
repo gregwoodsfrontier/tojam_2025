@@ -8,6 +8,7 @@ var exit_target: Node2D
 @onready var velocity_component: VelocityComponent = $"../VelocityComponent"
 @onready var thinking_timer: Timer = $"../ThinkingTimer"
 @onready var waiting_timer: Timer = $"../WaitingTimer"
+@onready var thinking_icon: Sprite2D = %ThinkingIcon
 
 @export var basic_customer: CharacterBody2D
 
@@ -16,7 +17,7 @@ func _ready():
 	thinking_timer.timeout.connect(_on_thinking_timeout)
 	waiting_timer.timeout.connect(_on_waiting_timeout)
 	state_machine.add_states(state_enter_shop, enter_state_enter_shop, Callable())
-	state_machine.add_states(state_think, enter_state_think, Callable())
+	state_machine.add_states(state_think, enter_state_think, exit_state_think)
 	state_machine.add_states(state_wait, enter_state_wait, exit_state_wait)
 	state_machine.add_states(state_leave, Callable(), Callable())
 	state_machine.set_initial_state(state_enter_shop)
@@ -50,10 +51,14 @@ func enter_state_enter_shop():
 
 func enter_state_think():
 	thinking_timer.start()
+	thinking_icon.visible = true
 
 func enter_state_wait():
 	waiting_timer.start()
 #endregion
+
+func exit_state_think():
+	thinking_icon.visible = false
 
 func exit_state_wait():
 	waiting_timer.stop()
