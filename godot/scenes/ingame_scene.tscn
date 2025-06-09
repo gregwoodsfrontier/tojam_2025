@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://cik30de5gaaah"]
+[gd_scene load_steps=23 format=4 uid="uid://cik30de5gaaah"]
 
 [ext_resource type="Script" uid="uid://ovjegpk30m4h" path="res://scenes/ingame_scene.gd" id="1_objyc"]
 [ext_resource type="PackedScene" uid="uid://bkk87o2ooo6at" path="res://ui/overlays/fade_overlay.tscn" id="1_y6ebv"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://cidipoo3uwgu0" path="res://scenes/game_objects/dish_space/dish_space.tscn" id="15_o7ls4"]
 [ext_resource type="PackedScene" uid="uid://be3t2x7tov8dt" path="res://scenes/game_objects/chef/chef.tscn" id="17_hysgw"]
 [ext_resource type="PackedScene" uid="uid://ctlpihforjxxn" path="res://scenes/ui/scoreUI/tip_UI.tscn" id="18_q7kwb"]
+[ext_resource type="PackedScene" uid="uid://lllmyrfji5b2" path="res://scenes/game_objects/bin/bin.tscn" id="21_l64ye"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_th7mp"]
 vertices = PackedVector2Array(516, 193, 516, 163, 548.312, 127, 558.672, 288, 451.531, 127, 476, 163, 436, 288, 436, 259, 476, 193, 396, 259, 356, 193, 356, 163, 196, 193, 196, 163, 316, 163, 316, 193, 260, 259, 220, 259, 173.047, 288, 172.047, 387.898, 81.0391, 386.094, 82.9531, 190, 123.711, 190, 396, 288, 260, 288, 220, 288, 156, 193, 130.711, 71.0391, 445.523, 73.9531, 156, 163)
@@ -174,13 +175,19 @@ process_mode = 2
 visible = false
 
 [node name="Entities" type="Node2D" parent="." groups=["entities_layer"]]
+y_sort_enabled = true
+position = Vector2(0, -1)
 
 [node name="Player" parent="Entities" instance=ExtResource("4_7v5ay")]
 y_sort_enabled = true
 position = Vector2(198, 100)
 
-[node name="Chef" parent="Entities" instance=ExtResource("17_hysgw")]
+[node name="Chef" parent="Entities" node_paths=PackedStringArray("request_manager") instance=ExtResource("17_hysgw")]
 position = Vector2(311, 79)
+request_manager = NodePath("../../RequestManager")
+
+[node name="Bin" parent="Entities" instance=ExtResource("21_l64ye")]
+position = Vector2(115, 125)
 
 [editable path="TipUI"]
 [editable path="TipUI/MarginContainer/TipDisplay"]

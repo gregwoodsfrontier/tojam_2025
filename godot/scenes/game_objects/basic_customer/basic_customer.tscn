@@ -236,6 +236,7 @@ position = Vector2(0, -37)
 
 [node name="ThinkingIcon" type="Sprite2D" parent="."]
 unique_name_in_owner = true
+visible = false
 position = Vector2(0, -30)
 texture = SubResource("AtlasTexture_skbxf")
 

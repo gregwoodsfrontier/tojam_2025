@@ -6,11 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://d31i2jouq1tvb" path="res://scenes/component/interactor_comp.tscn" id="3_gmlin"]
 [ext_resource type="PackedScene" uid="uid://d10axlpwc01i0" path="res://scenes/component/indicator_comp.tscn" id="4_lvxji"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_8afob"]
-radius = 8.0
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_gmlin"]
 radius = 26.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8afob"]
+radius = 8.0
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 16
@@ -18,6 +18,19 @@ collision_mask = 12
 script = ExtResource("1_dovo2")
 
 [node name="FoodTrayComponent" parent="." instance=ExtResource("2_p47bc")]
+
+[node name="IndicatorComp" parent="." instance=ExtResource("4_lvxji")]
+visible = false
+position = Vector2(0, -50)
+scale = Vector2(3, 3)
+
+[node name="InteractorComp" parent="." node_paths=PackedStringArray("interact_label") instance=ExtResource("3_gmlin")]
+interact_label = NodePath("../Label")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractorComp"]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_gmlin")
+debug_color = Color(0.776471, 0.8, 0.329412, 0.196078)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -15)
@@ -37,15 +50,3 @@ offset_top = -45.0
 offset_right = 23.0
 offset_bottom = -22.0
 text = "[E] to "
-
-[node name="InteractorComp" parent="." node_paths=PackedStringArray("interact_label") instance=ExtResource("3_gmlin")]
-interact_label = NodePath("../Label")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractorComp"]
-position = Vector2(0, -8)
-shape = SubResource("CircleShape2D_gmlin")
-debug_color = Color(0.776471, 0.8, 0.329412, 0.196078)
-
-[node name="IndicatorComp" parent="." instance=ExtResource("4_lvxji")]
-position = Vector2(0, -50)
-scale = Vector2(3, 3)

@@ -1,4 +1,5 @@
 extends Node
+class_name RequestManager
 
 var dish_space_pool : Array[Node] = []
 
@@ -35,22 +36,19 @@ func _make_kitchen_process_order():
 	if ready_request_pool.is_empty():
 		return
 	var first_request = ready_request_pool[0]
-	first_request.is_ready = true
+	first_request["is_ready"] = true
 	
 	var empty_space_pool = dish_space_pool.filter(func(e): return e.visible == false)
 	if empty_space_pool.is_empty():
 		return
-	print(empty_space_pool[0].food_id)
 	(empty_space_pool[0] as DishSpace).set_food_id(first_request["dish"])
-	print(empty_space_pool[0].food_id)
-	print("test")
 
 func check_process_availability():
 	var ready_request_pool = request_pool.filter(func(e): return e["is_ready"] == false)
 	var empty_space_pool = dish_space_pool.filter(func(e): return e.visible == false)
 	var no_request = ready_request_pool.is_empty()
 	var no_space = empty_space_pool.is_empty()
-	return !no_request and process_timer.is_stopped() and !no_space
+	return not no_request and process_timer.is_stopped() and not no_space
 
 func _process(delta: float):
 	if check_process_availability():
